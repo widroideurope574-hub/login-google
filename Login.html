@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+</head>
+<body>
+
+<button onclick="login()">Login with Google</button>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBF_4uKabeNa2vkYKqrKkFiLMBL8kly2p8",
+  authDomain: "eder-play-9f8c2.firebaseapp.com"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+function login() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+      const email = result.user.email;
+
+      // передаємо в DevelNext
+      window.location.href = "myapp://login?email=" + email;
+    });
+}
+</script>
+
+</body>
+</html>
